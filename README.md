@@ -1,6 +1,6 @@
 # docker-airflow
-[![CI status](https://github.com/puckel/docker-airflow/workflows/CI/badge.svg?branch=master)](https://github.com/puckel/docker-airflow/actions?query=workflow%3ACI+branch%3Amaster+event%3Apush)
-[![Docker Build status](https://img.shields.io/docker/build/puckel/docker-airflow?style=plastic)](https://hub.docker.com/r/puckel/docker-airflow/tags?ordering=last_updated)
+[![CI status](https://github.com/puckel/docker-airflow/workflows/CI/badge.svg?branch=master)](https://github.com/nvtienanh/docker-airflow/actions?query=workflow%3ACI+branch%3Amaster+event%3Apush)
+[![Docker Build status](https://img.shields.io/docker/build/puckel/docker-airflow?style=plastic)](https://hub.docker.com/r/nvtienanh/docker-airflow/tags?ordering=last_updated)
 
 [![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/r/puckel/docker-airflow/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/puckel/docker-airflow.svg)]()
@@ -19,7 +19,7 @@ This repository contains **Dockerfile** of [apache-airflow](https://github.com/a
 
 Pull the image from the Docker repository.
 
-    docker pull puckel/docker-airflow
+    docker pull nvtienanh/airflow
 
 ## Build
 
