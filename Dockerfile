@@ -4,6 +4,7 @@ LABEL maintainer="nvtienanh"
 ARG BUILD_DATE
 ARG VCS_REF
 ARG AIRFLOW_VERSION
+
 LABEL org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.name="Apache Airflow" \
         org.label-schema.description="An Apache Airflow docker image based on Alpine Linux" \
