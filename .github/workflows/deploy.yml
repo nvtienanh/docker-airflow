@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on: 
+  push:
+    branches:
+      - 1.10.6-alpine
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v1
+    - name: Login to DockerHub
+      run: docker login -u="nvtienanh" -p="${{ secrets.DOCKER_PASSWORD }}"
+    - name: Deploy Docker image
+      run: |
+        chmod +x deploy.sh
+        ./deploy.sh ${GITHUB_REF##*/}

@@ -1,4 +1,4 @@
-FROM python:3.7.6-alpine3.10
+FROM python:3.7.6-alpine3.9
 LABEL maintainer="nvtienanh"
 
 # Replace the apk repositories for a better performance
