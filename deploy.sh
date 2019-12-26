@@ -23,10 +23,12 @@ deploy() {
     IMAGE_TAG=$1
     AIRFLOW_VERSION=$2
     IMAGE=nvtienanh/airflow:$IMAGE_TAG
-    docker build \
-    -t $IMAGE \
-    --build-arg IMAGE_TAG=$IMAGE_TAG \
-    --build-arg AIRFLOW_VERSION=$AIRFLOW_VERSION .
+    docker build -t $IMAGE \
+                --build-arg IMAGE_TAG=$IMAGE_TAG \
+                --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+                --build-arg VCS_REF=`git rev-parse --short HEAD` \
+                --build-arg AIRFLOW_VERSION=$AIRFLOW_VERSION .
+    
     docker push $IMAGE
 }
 
