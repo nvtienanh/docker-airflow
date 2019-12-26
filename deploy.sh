@@ -27,7 +27,6 @@ deploy() {
     -t $IMAGE \
     --build-arg IMAGE_TAG=$IMAGE_TAG \
     --build-arg AIRFLOW_VERSION=$AIRFLOW_VERSION .
-    cd -
     docker push $IMAGE
 }
 
