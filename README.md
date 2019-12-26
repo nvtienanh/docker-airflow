@@ -1,6 +1,6 @@
-# docker-airflow
+# Apache Airflow
 [![CI status](https://github.com/nvtienanh/docker-airflow/workflows/CI/badge.svg?branch=master)](https://github.com/nvtienanh/docker-airflow/actions?query=workflow%3ACI+branch%3Amaster+event%3Apush)
-[![Docker Build status](https://img.shields.io/docker/build/nvtienanh/airflow?style=plastic)](https://hub.docker.com/r/nvtienanh/docker-airflow/tags?ordering=last_updated)
+[![Docker Build status](https://img.shields.io/docker/build/nvtienanh/airflow?style=plastic)](https://hub.docker.com/r/nvtienanh/airflow/tags?ordering=last_updated)
 
 [![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/r/nvtienanh/airflow/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/nvtienanh/airflow.svg)]()
