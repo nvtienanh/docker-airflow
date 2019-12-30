@@ -1,16 +1,15 @@
-# docker-airflow
-[![CI status](https://github.com/puckel/docker-airflow/workflows/CI/badge.svg?branch=master)](https://github.com/nvtienanh/docker-airflow/actions?query=workflow%3ACI+branch%3Amaster+event%3Apush)
-[![Docker Build status](https://img.shields.io/docker/build/puckel/docker-airflow?style=plastic)](https://hub.docker.com/r/nvtienanh/docker-airflow/tags?ordering=last_updated)
+# Apache Airflow
+[![CI status](https://github.com/nvtienanh/docker-airflow/workflows/CI/badge.svg?branch=1.10.6-alpine)](https://github.com/nvtienanh/docker-airflow/actions?query=branch%3A1.10.6-alpine++)
+[![Docker Version](https://images.microbadger.com/badges/version/nvtienanh/airflow:1.10.6-alpine.svg)](https://hub.docker.com/r/nvtienanh/airflow/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nvtienanh/airflow)](https://hub.docker.com/r/nvtienanh/airflow/)
+[![Docker Stars](https://img.shields.io/docker/stars/nvtienanh/airflow)](https://hub.docker.com/r/nvtienanh/airflow/)
+[![Docker Layers](https://img.shields.io/microbadger/layers/nvtienanh/airflow/1.10.6-alpine)](https://hub.docker.com/r/nvtienanh/airflow/)
+[![Docker Size](https://img.shields.io/microbadger/image-size/nvtienanh/airflow/1.10.6-alpine)](https://hub.docker.com/r/nvtienanh/airflow/)
 
-[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/r/puckel/docker-airflow/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/puckel/docker-airflow.svg)]()
-[![Docker Stars](https://img.shields.io/docker/stars/puckel/docker-airflow.svg)]()
-
-This repository contains **Dockerfile** of [apache-airflow](https://github.com/apache/incubator-airflow) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/puckel/docker-airflow/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
 
 ## Informations
 
-* Based on Python (3.7-slim-stretch) official Image [python:3.7-slim-stretch](https://hub.docker.com/_/python/) and uses the official [Postgres](https://hub.docker.com/_/postgres/) as backend and [Redis](https://hub.docker.com/_/redis/) as queue
+* Based on Python (python:3.7.6-alpine3.9) official Image [python:3.7.6-alpine3.9](https://hub.docker.com/_/python/) and uses the official [Postgres](https://hub.docker.com/_/postgres/) as backend and [Redis](https://hub.docker.com/_/redis/) as queue
 * Install [Docker](https://www.docker.com/)
 * Install [Docker Compose](https://docs.docker.com/compose/install/)
 * Following the Airflow release from [Python Package Index](https://pypi.python.org/pypi/apache-airflow)
@@ -21,24 +20,19 @@ Pull the image from the Docker repository.
 
     docker pull nvtienanh/airflow
 
-## Build
+## Deploy (Build + Push Docker image)
 
 Optionally install [Extra Airflow Packages](https://airflow.incubator.apache.org/installation.html#extra-package) and/or python dependencies at build time :
 
-    docker build --rm --build-arg AIRFLOW_DEPS="datadog,dask" -t puckel/docker-airflow .
-    docker build --rm --build-arg PYTHON_DEPS="flask_oauthlib>=0.9" -t puckel/docker-airflow .
+    chmod +x deploy.sh && ./deploy.sh
 
-or combined
-
-    docker build --rm --build-arg AIRFLOW_DEPS="datadog,dask" --build-arg PYTHON_DEPS="flask_oauthlib>=0.9" -t puckel/docker-airflow .
-
-Don't forget to update the airflow images in the docker-compose files to puckel/docker-airflow:latest.
+Don't forget to update the airflow images in the docker-compose files to nvtienanh/airflow:latest.
 
 ## Usage
 
 By default, docker-airflow runs Airflow with **SequentialExecutor** :
 
-    docker run -d -p 8080:8080 puckel/docker-airflow webserver
+    docker run -d -p 8080:8080 nvtienanh/airflow webserver
 
 If you want to run another executor, use the other docker-compose.yml files provided in this repository.
 
@@ -65,7 +59,7 @@ Go to Admin -> Connections and Edit "postgres_default" set this values (equivale
 
 For encrypted connection passwords (in Local or Celery Executor), you must have the same fernet_key. By default docker-airflow generates the fernet_key at startup, you have to set an environment variable in the docker-compose (ie: docker-compose-LocalExecutor.yml) file to set the same key accross containers. To generate a fernet_key :
 
-    docker run puckel/docker-airflow python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)"
+    docker run nvtienanh/airflow python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)"
 
 ## Configurating Airflow
 
@@ -111,7 +105,7 @@ This can be used to scale to a multi node setup using docker swarm.
 
 If you want to run other airflow sub-commands, such as `list_dags` or `clear` you can do so like this:
 
-    docker run --rm -ti puckel/docker-airflow airflow list_dags
+    docker run --rm -ti nvtienanh/airflow airflow list_dags
 
 or with your docker-compose set up like this:
 
@@ -119,8 +113,8 @@ or with your docker-compose set up like this:
 
 You can also use this to run a bash shell or any other command in the same environment that airflow would be run in:
 
-    docker run --rm -ti puckel/docker-airflow bash
-    docker run --rm -ti puckel/docker-airflow ipython
+    docker run --rm -ti nvtienanh/airflow bash
+    docker run --rm -ti nvtienanh/airflow ipython
 
 # Wanna help?
 

@@ -1,5 +1,18 @@
-FROM python:3.7.6-alpine3.10
+FROM python:3.7.6-alpine3.9
 LABEL maintainer="nvtienanh"
+
+ARG BUILD_DATE
+ARG VCS_REF
+ARG AIRFLOW_VERSION
+
+LABEL org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.name="Apache Airflow" \
+        org.label-schema.description="An Apache Airflow docker image based on Alpine Linux" \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/nvtienanh/docker-airflow" \
+        org.label-schema.vendor="nvtienanh" \
+        org.label-schema.version=$AIRFLOW_VERSION \
+        org.label-schema.schema-version="1.0"
 
 # Replace the apk repositories for a better performance
 RUN sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/https\:\/\/alpine.global.ssl.fastly.net/g' /etc/apk/repositories
@@ -13,7 +26,6 @@ RUN apk add --no-cache tzdata \
     && apk del tzdata
 
 # Airflow
-ARG AIRFLOW_VERSION=1.10.6
 ARG AIRFLOW_USER_HOME=/usr/local/airflow
 ARG AIRFLOW_DEPS="datadog,dask"
 ARG PYTHON_DEPS="flask_oauthlib>=0.9"
