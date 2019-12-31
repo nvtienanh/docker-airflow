@@ -1,5 +1,4 @@
 FROM python:3.7.6-alpine3.9
-LABEL maintainer="nvtienanh"
 
 ARG BUILD_DATE
 ARG VCS_REF
